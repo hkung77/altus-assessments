@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Container, InputGroup, FormControl, Button } from "react-bootstrap";
+import {
+  Container,
+  Spinner,
+  InputGroup,
+  FormControl,
+  Button,
+} from "react-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -68,6 +74,13 @@ const App = () => {
               onClick={handleSearchClick}
               variant="primary"
             >
+              <Spinner
+                as="span"
+                animation="grow"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
               Search
             </Button>
           )}
