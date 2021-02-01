@@ -14,12 +14,14 @@ const URI = "https://api-hkung.herokuapp.com";
 const App = () => {
   const [textSearch, setTextSearch] = useState("");
   const [downloadLink, setDownloadLink] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleTextChange = (e) => {
     setTextSearch(e.target.value);
   };
 
   const handleSearchClick = () => {
+    setLoading(true);
     const URL = encodeURI(`${URI}/school/grades?schoolName=${textSearch}`);
     fetch(URL, {
       method: "GET",
@@ -27,6 +29,7 @@ const App = () => {
     })
       .then((response) => {
         if (response.ok) {
+          setLoading(false);
           return response.blob();
         } else {
           throw response.error;
@@ -74,13 +77,15 @@ const App = () => {
               onClick={handleSearchClick}
               variant="primary"
             >
-              <Spinner
-                as="span"
-                animation="grow"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-              />
+              {loading && (
+                <Spinner
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+              )}
               Search
             </Button>
           )}
