@@ -17,6 +17,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
 
   const handleTextChange = (e) => {
+    setDownloadLink("");
     setTextSearch(e.target.value);
   };
 
